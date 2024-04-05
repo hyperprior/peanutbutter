@@ -42,8 +42,20 @@
           uv pip freeze | uv pip compile - -o requirements.txt
         '';
 
+        build = pkgs.writeShellScriptBin "build" ''
+          python -m pip wheel --no-deps --wheel-dir dist .
+          python -m pip sdist --dist-dir dist .
+        '';
+
+        tag = pkgs.writeShellScriptBin "tag" ''
+          ${pkgs.git}/bin/git tag v1.2.3
+          ${pkgs.git}/bin/git push --tags
+        '';
+
         scripts = [
           pip-freeze
+          build
+          tag
         ];
 
         mkDevShell = pkgs.mkShell {
