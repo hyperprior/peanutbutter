@@ -1,0 +1,24 @@
+[project]
+name = "peanutbutter"
+dynamic = ["version"]
+
+description = "Property-Based Testing and LLMS, what could go wrong?"
+readme = "README.md"
+authors = [{ name = "chrisaddy", email = "chris.william.addy@gmail.com" }]
+license = { file = "LICENSE" }
+keywords = ["testing", "LLMs"]
+
+requires-python = ">=3.10"
+dependencies = [
+  "instructor"
+]
+
+[project.optional-dependencies]
+dev = ["black", "ruff", "twine"]
+
+[tool.setuptools_scm]
+write_to = "peanutbutter/__version__.py"
+
+[build-system]
+requires = ["setuptools", "wheel", "setuptools_scm[toml]>=6.0"]
+build-backend = "setuptools.build_meta"
